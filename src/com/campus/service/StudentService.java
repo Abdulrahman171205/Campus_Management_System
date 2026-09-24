@@ -2,8 +2,8 @@ package com.campus.service;
 
 import com.campus.model.Student;
 
-public class Studentservice{
-// method to calculate total marks of a student
+public class StudentService {
+
     public int calculateTotal(Student student) {
         if (student.getMarks() == null) {
             return 0;
@@ -15,7 +15,6 @@ public class Studentservice{
         return total;
     }
 
-//calculate average marks of a student
     public double calculateAverage(Student student) {
         int total = calculateTotal(student);
         if (student.getMarks() == null || student.getMarks().length == 0) {
@@ -24,7 +23,6 @@ public class Studentservice{
         return (double) total / student.getMarks().length;
     }
 
-//find maximum marks of a student
     public int findMaximum(Student student) {
         if (student.getMarks() == null || student.getMarks().length == 0) {
             return 0;
@@ -38,7 +36,6 @@ public class Studentservice{
         return max;
     }
 
-//find minimum marks of a student
     public int findMinimum(Student student) {
         if (student.getMarks() == null || student.getMarks().length == 0) {
             return 0;
@@ -50,45 +47,44 @@ public class Studentservice{
             }
         }
         return min;
-    }    
-    //grade based on marks
-    public char grade(Student student){
-        int[](mark = student.getmarks();
-        if(marks == null || marks.length == 0)
-            return 'F' ;
     }
-    int total = calculateTotal(student);
-    int average = calculateAverage(student);
-    if(average >=90){
-        return 'A';
-    } else if(average >=80){
-        return 'B';
 
-    } else if(average >=70){
-        return 'C';
-
-    } else if(average >=60){
-        return 'D';
-
-    } else {
-        return 'F';
+    public char grade(Student student) {
+        int[] marks = student.getMarks();
+        if (marks == null || marks.length == 0) {
+            return 'F';
+        }
+        int total = calculateTotal(student);
+        int average = (int) calculateAverage(student);
+        if (average >= 90) {
+            return 'A';
+        } else if (average >= 80) {
+            return 'B';
+        } else if (average >= 70) {
+            return 'C';
+        } else if (average >= 60) {
+            return 'D';
+        } else {
+            return 'F';
+        }
     }
-    // pass or fail
- public String passOrFail(Student student) {
-    int[] marks = student.getMarks();
-    if (marks == null || marks.length == 0) {
-        return "Fail";
+
+    public String passOrFail(Student student) {
+        int[] marks = student.getMarks();
+        if (marks == null || marks.length == 0) {
+            return "Fail";
+        }
+        int average = (int) calculateAverage(student);
+        if (average >= 40) {
+            return "Pass";
+        } else {
+            return "Fail";
+        }
     }
-    int average = (int) calculateAverage(student);
-    if (average >= 40) {
-        return "Pass";
-    } else {
-        return "Fail";
-}
-//display report card
+
     public void displayReportCard(Student student) {
-        System.out.println("Student Name: " + student.getStudentname());
-        System.out.println("Student ID: " + student.getStudentid());
+        System.out.println("Student Name: " + student.getStudentName());
+        System.out.println("Student ID: " + student.getStudentId());
         System.out.println("Department: " + student.getDepartment());
         System.out.println("Total Marks: " + calculateTotal(student));
         System.out.println("Average Marks: " + calculateAverage(student));
@@ -98,5 +94,3 @@ public class Studentservice{
         System.out.println("Result: " + passOrFail(student));
     }
 }
-}
-
